@@ -137,3 +137,8 @@ dmypy.json
 sports.db
 main_old_old.py
 templates/players_old.html
+
+stream/stream/.DS_Store
+stream/transcript/.DS_Store
+stream/transcript/templates/.DS_Store
+.DS_Store
