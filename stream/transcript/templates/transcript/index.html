@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Chat</title>
+        <title>Transcriber</title>
     </head>
     <body>
-        <h1>Transcribe Audio With Django</h1>
-        <p id="status">Connection status will go here</p>
+        <h1>Transcribe Live Audio</h1>
+        <p id="status">Audio not ready...</p>
         <p id="transcript"></p>
        
         <script>
            navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
             if (!MediaRecorder.isTypeSupported('audio/webm'))
-                return alert('Browser not supported')
+                return alert('Browser not supported \n Chrome is recommended.')
 
             const mediaRecorder = new MediaRecorder(stream, {
                 mimeType: 'audio/webm',
             })
 
-            const socket = new WebSocket('ws://localhost:8000/listen')
+            const socket = new WebSocket('/listen')
 
             socket.onopen = () => {
-                document.querySelector('#status').textContent = 'Connected'
+                document.querySelector('#status').textContent = 'Ready. \n Say something...'
                 console.log({ event: 'onopen' })
                 mediaRecorder.addEventListener('dataavailable', async (event) => {
                     if (event.data.size > 0 && socket.readyState == 1) {
