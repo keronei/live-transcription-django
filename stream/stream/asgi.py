@@ -17,7 +17,7 @@ import transcript.routing
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "stream.settings")
 
 application = ProtocolTypeRouter({
-  "http": get_asgi_application(),
+  "https": get_asgi_application(),
   "websocket": AuthMiddlewareStack(
         URLRouter(
             transcript.routing.websocket_urlpatterns
